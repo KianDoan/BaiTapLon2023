@@ -2,6 +2,8 @@
 
 Game* game = NULL;
 
+Menu* menu = NULL;
+
 int main(int argc, char* args[])
 {
 
@@ -16,7 +18,11 @@ int main(int argc, char* args[])
 
 	game->init("Tiny Monster", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 640, 0);
 
-	while (!(game->gameOver()))
+	menu = new Menu();
+
+	bool quit = menu->LoadMenu();
+
+	while (!(game->gameOver()) && !quit)
 	{
 		frameStart = SDL_GetTicks();
 
@@ -29,6 +35,9 @@ int main(int argc, char* args[])
 			SDL_Delay(frameDelay - frameTime);
 	}
 	game->cleanUp();
+	delete menu;
+	menu = NULL;
 	delete game;
+	game = NULL;
 	return 0;
 }
