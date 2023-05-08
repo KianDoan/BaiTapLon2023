@@ -22,6 +22,8 @@ public:
 	int map_start;
 
 private:
+	int seed;
+
 	SDL_Rect dest;
 
 	SDL_Texture* snow;

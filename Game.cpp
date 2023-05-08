@@ -6,11 +6,12 @@ SDL_Renderer* Game::renderer = NULL;
 
 Map* map;
 
+ThreatObject *threat_1, *threat_2;
+
 
 Game::Game()
 	:window(NULL), isOver(false)
 {
-	scroll_speed = 4;
 
 	layer_1 = NULL;
 	layer_2 = NULL;
@@ -65,15 +66,17 @@ void Game::init(const char* p_title, int p_xPos, int p_yPos, int p_width, int p_
 				else
 				{
 					SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-					player = new GameObject("Resources/gfx/right_stand.png", 640, 0);
+					player = new GameObject("Resources/gfx/right_stand.png", 640, 384);
 					player->loadClips();
+					threat_1 = new ThreatObject(1280, 0, 0);
+					threat_2 = new ThreatObject(1000, -240, 1879);
 					map = new Map();
-					layer_1 = LoadTexture::loadTex("Resources/gfx/layer_1.png");
-					layer_2 = LoadTexture::loadTex("Resources/gfx/layer_2.png");
-					layer_3 = LoadTexture::loadTex("Resources/gfx/layer_3.png");
-					layer_4 = LoadTexture::loadTex("Resources/gfx/layer_4.png");
-					layer_5 = LoadTexture::loadTex("Resources/gfx/layer_5.png");
-					layer_6 = LoadTexture::loadTex("Resources/gfx/layer_6.png");
+					layer_1 = Common_Fuction::loadTex("Resources/gfx/layer_1.png");
+					layer_2 = Common_Fuction::loadTex("Resources/gfx/layer_2.png");
+					layer_3 = Common_Fuction::loadTex("Resources/gfx/layer_3.png");
+					layer_4 = Common_Fuction::loadTex("Resources/gfx/layer_4.png");
+					layer_5 = Common_Fuction::loadTex("Resources/gfx/layer_5.png");
+					layer_6 = Common_Fuction::loadTex("Resources/gfx/layer_6.png");
 				}
 			}
 		}
@@ -121,7 +124,11 @@ void Game::update()
 	}
 	
 	map->loadMap();
+	player->CheckCollision(player->GetRect(), threat_1->GetRect());
+	player->CheckCollision(player->GetRect(), threat_2->GetRect());
 	player->update(*map);
+	threat_1->Update(*map);
+	threat_2->Update(*map);	
 }
 
 void Game::render()
@@ -141,6 +148,8 @@ void Game::render()
 
 	map->drawMap();
 	player->renderClip();
+	threat_1->Render();
+	threat_2->Render();
 	SDL_RenderPresent(renderer);
 }
 

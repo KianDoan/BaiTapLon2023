@@ -2,17 +2,18 @@
 
 Map::Map()
 {
+	seed = 0;
 	map_start = 0;
 	first_map = 0;
 	second_map = rand() % 5 + 1;
-	snow = LoadTexture::loadTex("Resources/gfx/snow.png");
-	dirt = LoadTexture::loadTex("Resources/gfx/dirt.png");
-	right_snow = LoadTexture::loadTex("Resources/gfx/right_snow.png");
-	left_snow = LoadTexture::loadTex("Resources/gfx/left_snow.png");
-	alone_snow = LoadTexture::loadTex("Resources/gfx/alone_snow.png");
-	right_dirt = LoadTexture::loadTex("Resources/gfx/right_dirt.png");
-	left_dirt = LoadTexture::loadTex("Resources/gfx/left_dirt.png");
-	alone_dirt = LoadTexture::loadTex("Resources/gfx/alone_dirt.png");
+	snow = Common_Fuction::loadTex("Resources/gfx/snow.png");
+	dirt = Common_Fuction::loadTex("Resources/gfx/dirt.png");
+	right_snow = Common_Fuction::loadTex("Resources/gfx/right_snow.png");
+	left_snow = Common_Fuction::loadTex("Resources/gfx/left_snow.png");
+	alone_snow = Common_Fuction::loadTex("Resources/gfx/alone_snow.png");
+	right_dirt = Common_Fuction::loadTex("Resources/gfx/right_dirt.png");
+	left_dirt = Common_Fuction::loadTex("Resources/gfx/left_dirt.png");
+	alone_dirt = Common_Fuction::loadTex("Resources/gfx/alone_dirt.png");
 	dest.h = 64;
 	dest.w = 64;
 }
@@ -22,8 +23,14 @@ Map::~Map()
 
 void Map::loadMap()
 {
-	srand(time(NULL));
+	if (seed == 0)
+	{
+		seed = time(NULL);
+	}
+	srand(seed);
+
 	map_start += 5;
+
 	if (map_start == 1280)
 	{
 		map_start = 0;

@@ -1,12 +1,12 @@
-#include"LoadTexture.h"
+#include"Common_Fuction.h"
 
-LoadTexture::LoadTexture()
+Common_Fuction::Common_Fuction()
 {}
 
-LoadTexture::~LoadTexture()
+Common_Fuction::~Common_Fuction()
 {}
 
-SDL_Texture* LoadTexture::loadTex(const char* p_path)
+SDL_Texture* Common_Fuction::loadTex(const char* p_path)
 {
 	SDL_Texture* texture = NULL;
 	SDL_Surface* tmpSurface = IMG_Load(p_path);

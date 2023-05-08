@@ -6,7 +6,7 @@
 #include<SDL.h>
 #include<SDL_image.h>
 
-#include"LoadTexture.h"
+#include"Common_Fuction.h"
 #include"GameObject.h"
 #include"Map.h"
 

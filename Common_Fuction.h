@@ -3,11 +3,11 @@
 
 #include"Game.h"
 
-class LoadTexture
+class Common_Fuction
 {
 public:
-	LoadTexture();
-	~LoadTexture();
+	Common_Fuction();
+	~Common_Fuction();
 	static SDL_Texture* loadTex(const char* p_path);
 private:
 

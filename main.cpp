@@ -4,6 +4,7 @@ Game* game = NULL;
 
 int main(int argc, char* args[])
 {
+
 	float FPS = 30;
 
 	int frameDelay = 1000 / FPS;
@@ -13,7 +14,7 @@ int main(int argc, char* args[])
 
 	game = new Game();
 
-	game->init("Baby Dragon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 640, 0);
+	game->init("Tiny Monster", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 640, 0);
 
 	while (!(game->gameOver()))
 	{

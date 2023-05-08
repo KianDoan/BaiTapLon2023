@@ -1,7 +1,8 @@
 #ifndef GAME_OBJECT_H_
 #define GAME_OBJECT_H_
 
-#include<vector>
+#include<ctime>
+#include<cstdlib>
 
 #include"Game.h"
 #include"Map.h"
@@ -29,8 +30,13 @@ public:
 	void loadClips();
 	void renderClip();
 	bool handlePlayerInput();
-	void accident(Map& map_data);
+	void CheckToMap(Map& map_data);
+	void CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2);
 	void scrollMap(Map& map_data);
+	SDL_Rect GetRect()
+	{
+		return destRect;
+	}
 
 private:
 	float x_pos;
@@ -51,6 +57,33 @@ private:
 	SDL_Texture* objTexture;
 	SDL_Rect srcRect, destRect, frame_clip[6];
 	int lever;
+};
+
+class ThreatObject
+{
+public:
+	ThreatObject(int p_x, int p_y, int p_seed);
+	~ThreatObject();
+
+	void Update(Map& map_data);
+	void Render();
+	bool Accident(Map& map_data);
+
+	SDL_Rect GetRect()
+	{
+		return dest_rect;
+	}
+
+
+private:
+	int seed;
+
+	int object_scroll;
+	int map_scroll;
+	float x_val, y_val;
+	SDL_Rect dest_rect;
+	SDL_Texture* threat_texture;
+
 };
 
 #endif // !GAME_OBJECT_H_
