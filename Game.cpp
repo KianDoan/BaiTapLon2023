@@ -6,7 +6,7 @@ SDL_Renderer* Game::renderer = NULL;
 
 Map* map;
 
-ThreatObject *threat_1, *threat_2;
+ThreatObject *threat_1, *threat_2, *threat_3;
 
 
 Game::Game()
@@ -68,8 +68,9 @@ void Game::init(const char* p_title, int p_xPos, int p_yPos, int p_width, int p_
 					SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 					player = new GameObject("Resources/gfx/right_stand.png", 640, 384);
 					player->loadClips();
-					threat_1 = new ThreatObject(1280, 0, 0);
-					threat_2 = new ThreatObject(1000, -240, 1879);
+					threat_1 = new ThreatObject(1280, 1000, 0);
+					threat_2 = new ThreatObject(1000, -1240, 1879);
+					threat_3 = new ThreatObject(1000, -1480, 900);
 					map = new Map();
 					layer_1 = Common_Fuction::loadTex("Resources/gfx/layer_1.png");
 					layer_2 = Common_Fuction::loadTex("Resources/gfx/layer_2.png");
@@ -126,9 +127,12 @@ void Game::update()
 	map->loadMap();
 	player->CheckCollision(player->GetRect(), threat_1->GetRect());
 	player->CheckCollision(player->GetRect(), threat_2->GetRect());
+	player->CheckCollision(player->GetRect(), threat_3->GetRect());
 	player->update(*map);
 	threat_1->Update(*map);
-	threat_2->Update(*map);	
+	threat_2->Update(*map);
+	threat_3->Update(*map);
+
 }
 
 void Game::render()
@@ -150,11 +154,17 @@ void Game::render()
 	player->renderClip();
 	threat_1->Render();
 	threat_2->Render();
+	threat_3->Render();
 	SDL_RenderPresent(renderer);
 }
 
 void Game::cleanUp()
 {
+	map->close();
+	player->close();
+	threat_1->close();
+	threat_2->close();
+	threat_3->close();
 	SDL_DestroyTexture(layer_1);
 	SDL_DestroyTexture(layer_1);
 	SDL_DestroyTexture(layer_1);

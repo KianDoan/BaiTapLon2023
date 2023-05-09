@@ -38,6 +38,8 @@ public:
 		return destRect;
 	}
 
+	void close();
+
 private:
 	float x_pos;
 	float y_pos;
@@ -59,6 +61,10 @@ private:
 	int lever;
 };
 
+
+//Threat Object
+
+
 class ThreatObject
 {
 public:
@@ -74,6 +80,7 @@ public:
 		return dest_rect;
 	}
 
+	void close();
 
 private:
 	int seed;

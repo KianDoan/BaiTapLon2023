@@ -21,6 +21,8 @@ public:
 	int gameMap[11][40];
 	int map_start;
 
+	void close();
+
 private:
 	int seed;
 

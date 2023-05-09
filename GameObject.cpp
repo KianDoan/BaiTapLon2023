@@ -132,17 +132,14 @@ bool GameObject::handlePlayerInput()
 				status = MOVE_RIGHT;
 				right = 1;
 				left = 0;
-				cout << "right" << endl;
 				break;
 			case SDLK_LEFT:
 				status = MOVE_LEFT;
 				right = 0;
 				left = 1;
-				cout << "left" << endl;
 				break;
 			case SDLK_UP:
 				jump = 1;
-				cout << "up" << endl;
 				break;
 			default:
 				break;
@@ -275,6 +272,12 @@ void GameObject::scrollMap(Map& map_data)
 	}
 }
 
+void GameObject::close()
+{
+	SDL_DestroyTexture(objTexture);
+	objTexture = NULL;
+}
+
 //ThreatObject
 
 ThreatObject::ThreatObject(int p_x, int p_y, int p_seed)
@@ -316,7 +319,7 @@ void ThreatObject::Update(Map& map_data)
 
 	if (dest_rect.y >= 640 || !Accident(map_data))
 	{
-		dest_rect.x = rand() % 981 + 300;
+		dest_rect.x = rand() % 981 + 400;
 		dest_rect.y = -100;
 		seed = rand();
 	}
@@ -341,4 +344,10 @@ bool ThreatObject::Accident(Map& map_data)
 		return false;
 	}
 	return true;
+}
+
+void ThreatObject::close()
+{
+	SDL_DestroyTexture(threat_texture);
+	threat_texture = NULL;
 }

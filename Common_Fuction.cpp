@@ -86,3 +86,13 @@ int Menu::CheckMouseDown(int p_x,int p_y)
 		return 2;
 	return 0;
 }
+
+void Menu::close()
+{
+	SDL_DestroyTexture(main_menu);
+	main_menu = NULL;
+	SDL_DestroyTexture(play_button);
+	play_button = NULL;
+	SDL_DestroyTexture(exit_button);
+	exit_button = NULL;
+}

@@ -22,6 +22,8 @@ int main(int argc, char* args[])
 
 	bool quit = menu->LoadMenu();
 
+	menu->close();
+
 	while (!(game->gameOver()) && !quit)
 	{
 		frameStart = SDL_GetTicks();

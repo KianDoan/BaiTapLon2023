@@ -26,6 +26,8 @@ public:
 
 	bool LoadMenu();
 	int CheckMouseDown(int p_x,int p_y);
+
+	void close();
 private:
 	SDL_Texture* main_menu, * play_button, * exit_button;
 	SDL_Rect play_button_rect = { 100,50,203,109 }, exit_button_rect = { 100,170,203,109 };

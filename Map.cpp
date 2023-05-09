@@ -114,3 +114,23 @@ void Map::drawMap()
 		map_y++;
 	}
 }
+
+void Map::close()
+{
+	SDL_DestroyTexture(snow);
+	snow = NULL;
+	SDL_DestroyTexture(right_snow);
+	right_snow = NULL;
+	SDL_DestroyTexture(left_snow);
+	left_snow = NULL;
+	SDL_DestroyTexture(alone_snow);
+	alone_snow = NULL;
+	SDL_DestroyTexture(dirt);
+	dirt = NULL;
+	SDL_DestroyTexture(right_dirt);
+	right_dirt = NULL;
+	SDL_DestroyTexture(left_dirt);
+	left_dirt = NULL;
+	SDL_DestroyTexture(alone_dirt);
+	alone_dirt = NULL;
+}
